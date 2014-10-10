@@ -3,6 +3,7 @@
 '''
 from src.Graph import Graph
 from src.Node import Node
+from decimal import Decimal
 
 def main():
     my_graph = Graph()
@@ -14,12 +15,12 @@ def main():
     my_graph.add_node(node2)
     my_graph.add_node(node3)
     my_graph.add_node(node4)
-    my_graph.add_edge((node1, node2), 0.5)
-    my_graph.add_edge((node1, node3), 0.25)
-    my_graph.add_edge((node1, node4), 1.5)
-    my_graph.add_edge((node2, node4), 1.2)
-    my_graph.add_edge((node4, node1), 2.5)
-    my_graph.add_edge((node4, node3), 1.8)
+    my_graph.add_edge((node1, node2), Decimal(0.5))
+    my_graph.add_edge((node1, node3), Decimal(0.25))
+    my_graph.add_edge((node1, node4), Decimal(1.5))
+    my_graph.add_edge((node2, node4), Decimal(1.2))
+    my_graph.add_edge((node4, node1), Decimal(2.5))
+    my_graph.add_edge((node4, node3), Decimal(1.8))
     print my_graph
     print my_graph.get_nodes()
     print my_graph.get_edges()

@@ -21,9 +21,6 @@ class Graph(object):
 
         self.node_list = []
         self.edge_list = []
-        # No neighbors at first
-        self.neighbor_nodes = {}
-        self.incident_edges = {}
 
     def get_nodes(self):
         '''

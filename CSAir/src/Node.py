@@ -45,7 +45,7 @@ class Node(object):
         Returns the incoming degree of this node (how many external vertices
         have edges that lead to this node)
 
-        @rtype: in - A standard integer
+        @rtype: int - A standard integer
         @return: The incoming degree of this node
         '''
         return self.indegree
@@ -55,7 +55,7 @@ class Node(object):
         Returns the outgoing degree of this node (how many edges there are that
         originate at this node and lead to other nodes in the graph)
 
-        @rtype: in - A standard integer
+        @rtype: int - A standard integer
         @return: The outgoing degree of this node
         '''
         return self.outdegree

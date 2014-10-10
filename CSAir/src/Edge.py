@@ -7,7 +7,6 @@ class Edge(object):
     classdocs
     '''
 
-
     def __init__(self, vertices_tuple, edge_weight):
         '''
         Constructor
@@ -16,8 +15,6 @@ class Edge(object):
         neighbors that each of the vertices already has
         and basically figures out what edges in the graph
         are incident to itself.
-
-        
         '''
         self.endpoints = vertices_tuple
         self.incidents = []
