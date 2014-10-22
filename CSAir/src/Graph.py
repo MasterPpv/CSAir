@@ -31,7 +31,6 @@ class Graph(object):
         @rtype: list - A standard Python list
         @return: A list of all nodes currently in the graph
         '''
-        #return list(self.neighbor_nodes.keys())
         return self.node_list
 
     def get_edges(self):
