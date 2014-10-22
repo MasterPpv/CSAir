@@ -80,6 +80,26 @@ class Node(object):
         '''
         return self.neighbors_out
 
+    def get_routes_in(self):
+        '''
+        Returns a list of all the edges in the graph that lead
+        from other nodes in the graph directly to this node
+
+        @rtype: list - A standard Python list
+        @return: A list of all edges leading to this node
+        '''
+        return self.edges_in
+
+    def get_routes_out(self):
+        '''
+        Returns a list of all the edges in the graph that lead
+        from this node directly to other nodes in the graph
+
+        @rtype: list - A standard Python list
+        @return: A list of all edges going out from this node
+        '''
+        return self.edges_out
+
     def get_adjacents(self):
         '''
         Returns a list of all the nodes in the graph that
@@ -97,3 +117,13 @@ class Node(object):
             if not entry in adjacents:
                 adjacents.append(entry)
         return adjacents
+
+    def get_data(self):
+        '''
+        Returns a Dictionary containing any relevant data that
+        was given to this node at the time of its creation
+
+        @rtype: Dictionary - A standard Python Dictionary
+        @return: A Dictionary containing any data this node has
+        '''
+        return self.data

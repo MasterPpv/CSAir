@@ -1,8 +1,10 @@
 '''
 @author: Priten Vora
 '''
-from src.Edge import Edge
-#from src.Node import Node
+from Edge import Edge
+from Node import Node
+import sys
+from decimal import Decimal
 
 class Graph(object):
     '''
@@ -79,10 +81,10 @@ class Graph(object):
             new_edge = Edge(edge_vertices, edge_weight)
             self.edge_list.append(new_edge)
             endpoint_1.neighbors_out.append(endpoint_2)
-            endpoint_1.edges_out.append(edge_vertices)
+            endpoint_1.edges_out.append(new_edge)
             endpoint_1.outdegree += 1
             endpoint_2.neighbors_in.append(endpoint_1)
-            endpoint_2.edges_in.append(edge_vertices)
+            endpoint_2.edges_in.append(new_edge)
             endpoint_2.indegree += 1
         else:
             raise ValueError("Edge (%s, %s) is already in the graph." %(endpoint_1, endpoint_2))
@@ -92,3 +94,60 @@ class Graph(object):
 
     def delete_edge(self, graph_edge):
         return 1
+
+    def get_shortest_edge(self):
+        '''
+        Figures out and returns the shortest edge in the
+        graph (returns the actual Edge object, not its weight)
+        '''
+        shortest_edge_weight = sys.maxint
+        shortest_edge = Edge((Node({}), Node({})), shortest_edge_weight)
+        for current_edge in self.edge_list:
+            if current_edge.get_weight() < Decimal(shortest_edge_weight):
+                shortest_edge_weight = current_edge.get_weight()
+                shortest_edge = current_edge
+        return shortest_edge
+
+    def get_longest_edge(self):
+        '''
+        Figures out and returns the longest edge in the
+        graph (returns the actual Edge object, not its weight)
+        '''
+        longest_edge_weight = -sys.maxint - 1
+        longest_edge = Edge((Node({}), Node({})), longest_edge_weight)
+        for current_edge in self.edge_list:
+            if current_edge.get_weight() > Decimal(longest_edge_weight):
+                longest_edge_weight = current_edge.get_weight()
+                longest_edge = current_edge
+        return longest_edge
+
+    def get_average_edge_weight(self):
+        '''
+        Calculates and returns the average weight of all of
+        the edges currently in the graph
+        '''
+        num_edges = Decimal(len(self.edge_list))
+        sum_weight = Decimal(0)
+        for current_edge in self.edge_list:
+            sum_weight += current_edge.get_weight()
+        average = Decimal(sum_weight / num_edges)
+        return average
+
+    def get_hub_list(self):
+        '''
+        Gets a list of all of the nodes in the graph that have
+        the highest degree. If there are multiple nodes with
+        equal degree and that degree is the highest degree, both
+        nodes will be included in the list that is returned.
+        '''
+        max_degree = -sys.maxint - 1
+        hub_list = []
+        for current_node in self.node_list:
+            current_degree = current_node.get_degree()
+            if current_degree == max_degree:
+                hub_list.append(current_node)
+            elif current_degree > max_degree:
+                del hub_list[:]
+                hub_list.append(current_node)
+                max_degree = current_degree
+        return hub_list
